@@ -36,7 +36,7 @@ const Popup = styled.section`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 380px;
+        width: 300px;
         height: 100vh;
         float: left;
         background: #EEEEEE;

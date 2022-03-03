@@ -31,9 +31,8 @@ const Header = () => {
                         <h2>Web<span>Store</span></h2>
                     </div>
                     <div className='btns'>
-                        <Link className='btn' onClick={() => setUserPop(!userPop)} to='/'>
-                            <img src={userIcon} alt="user icon"  />
-                            {userPop && <UserPopup/>}
+                        <Link className='login-btn' to='/login'>
+                            ثبت نام و ورود
                         </Link>
                         <Link className='btn' onClick={() => setCartPop(true)} to='/'>
                             <sup>0</sup>
@@ -73,6 +72,19 @@ const TopHeader = styled.header`
             }
         }
         .btns {
+            align-items: center;
+            display: flex;
+            .login-btn {
+                padding: .2rem .6rem .4rem .6rem;
+                border: 1px solid #316B83;
+                border-radius: .3rem;
+                font-weight: bold;
+                transition: all .3s linear;
+                :hover {
+                    background-color: #316B83;
+                    color: #EEEEEE;
+                }
+            }
             .btn {
                 padding: .3rem;
                 margin-right: .5rem;

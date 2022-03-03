@@ -1,12 +1,19 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-// components
-import Header from './components/Header';
+
+// Pages
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
 
 function App() {
   return (
-    <>
-      <Header />
-    </>
+    <Routes>
+      <Route path='/' element={<Landing />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+    </Routes>
   );
 }
 
