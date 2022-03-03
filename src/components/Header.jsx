@@ -75,7 +75,7 @@ const TopHeader = styled.header`
             align-items: center;
             display: flex;
             .login-btn {
-                padding: .2rem .6rem .4rem .6rem;
+                padding: .2rem .8rem;
                 border: 1px solid #316B83;
                 border-radius: .3rem;
                 font-weight: bold;

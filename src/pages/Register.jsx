@@ -1,9 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+// validate function
+import validate from '../utils/validate';
+
 
 const Register = () => {
+
+    const [ user, setUser ] = useState({
+        userName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        checkbox: false
+    });
+
+    const [ error, setError ] = useState({});
+    const [ touched, setTouched ] = useState({});
+
+    const changeHandler = e => {
+        if(e.target.name === "checkbox") {
+            setUser({...user, [e.target.name]: e.target.checked})
+        } else {
+            setUser({...user, [e.target.name]: e.target.value})
+        }
+    }
+
+    const focusHandler = e => {
+        setTouched({...touched, [e.target.name]: true})
+    }
+
+    const submitHandler = e => {
+        e.preventDefault();
+
+        if(!Object.keys(error).length) {
+            console.log("Success");
+        } else {
+            console.log("unSuccess");
+            setTouched({
+                userName: true,
+                email: true,
+                password: true,
+                confirmPassword: true,
+                checkbox: true
+            })
+        }
+    }
+
+    useEffect(() => {
+        setError(validate(user))
+    },[user, touched])
 
     return (
         <Section>
@@ -12,42 +59,80 @@ const Register = () => {
                     <h2>Web<span>Store</span></h2>
                     <h4>ساخت حساب کاربری جدید</h4>
                 </div>
-                <form>
+                <form onSubmit={submitHandler}>
                     <div className='input'>
                         <label>نام کاربری</label>
-                        <input type="text" dir='ltr'/>
-                        <span>نام کاریری</span>
+                        <input 
+                        type="text" 
+                        dir='ltr' 
+                        value={user.userName} 
+                        name='userName'
+                        onChange={changeHandler}
+                        onFocus={focusHandler}
+                        autoComplete="off"
+                        />
+                        {error.userName && touched.userName && <span>{error.userName}</span>}
                     </div>
                     <div className='input'>
                         <label>ایمیل</label>
-                        <input type="email" placeholder='example@email.com' dir='ltr'/>
-                        <span>ایمیل</span>
+                        <input 
+                        type="email" 
+                        placeholder='example@email.com' 
+                        dir='ltr'
+                        value={user.email} 
+                        name='email'
+                        onChange={changeHandler}
+                        onFocus={focusHandler}
+                        autoComplete="off"
+                        />
+                        {error.email && touched.email && <span>{error.email}</span>}
                     </div>
                     <div className='input'>
                         <label>گذرواژه</label>
-                        <input type="password" dir='ltr'/>
-                        <span>گذرواژه</span>
+                        <input 
+                        type="password" 
+                        dir='ltr'
+                        value={user.password} 
+                        name='password'
+                        onChange={changeHandler}
+                        onFocus={focusHandler}
+                        />
+                        {error.password && touched.password && <span>{error.password}</span>}
                     </div>
                     <div className='input'>
                         <label>تکرار گذرواژه</label>
-                        <input type="password" dir='ltr'/>
-                        <span>تکرار گذرواژه</span>
+                        <input 
+                        type="password" 
+                        dir='ltr' 
+                        name='confirmPassword'
+                        value={user.confirmPassword}
+                        onChange={changeHandler}
+                        onFocus={focusHandler}
+                        />
+                        {error.confirmPassword && touched.confirmPassword&& <span>{error.confirmPassword}</span>}
                     </div>
                     <div className='checkbox'>
                         <div>
-                            <input type="checkbox" dir='ltr'/>
+                            <input 
+                            type="checkbox" 
+                            dir='ltr'
+                            name='checkbox'
+                            value={user.checkbox}
+                            onChange={changeHandler}
+                            onFocus={focusHandler}
+                            />
                             <p>قوانین و شرایط سایت را میپذیرم</p>
                         </div>
-                        <span>تکرار گذرواژه</span>
+                        {error.checkbox && touched.checkbox && <span>{error.checkbox}</span>}
+                    </div>
+                    <div className='btn'>
+                        <button type='submit'>ثــبت نــام</button>
+                    </div>
+                    <div className='links'>
+                        <Link to='/'>فراموشی گذرواژه!</Link>
+                        <Link to='/login'>حساب کاربری دارید؟</Link>
                     </div>
                 </form>
-                <div className='btn'>
-                    <button>ثبت نام</button>
-                </div>
-                <div className='links'>
-                    <Link to='/'>فراموشی گذرواژه!</Link>
-                    <Link to='/login'>حساب کاربری دارید؟</Link>
-                </div>
             </div>
         </Section>
     );
