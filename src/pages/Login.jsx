@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '../contexts/AuthProvider';
 
 
 // validate function
@@ -13,6 +14,7 @@ const Login = () => {
         email: '',
         password: ''
     });
+    const value = useContext(AuthContext)
 
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
@@ -30,7 +32,7 @@ const Login = () => {
 
         if(!Object.keys(error).length) {
             console.log("yes");
-            // signIn(user.email, user.password)
+            value.signIn(user.email, user.password)
             // console.log(currentUser);
         } else {
             console.log("unSuccess");

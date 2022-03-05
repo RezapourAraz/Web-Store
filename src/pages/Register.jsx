@@ -18,7 +18,6 @@ const Register = () => {
     });
 
     const value = useContext(AuthContext)
-    console.log(value);
     
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
