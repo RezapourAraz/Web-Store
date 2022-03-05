@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '../contexts/AuthProvider';
 
 // validate function
-import validate from '../utils/validate';
+import { RegisterValidate } from '../utils/validate';
 
 
 const Register = () => {
@@ -16,6 +17,9 @@ const Register = () => {
         checkbox: false
     });
 
+    const value = useContext(AuthContext)
+    console.log(value);
+    
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
 
@@ -35,7 +39,8 @@ const Register = () => {
         e.preventDefault();
 
         if(!Object.keys(error).length) {
-            console.log("Success");
+            value.signUp(user.email, user.password, user);
+            // console.log(currentUser);
         } else {
             console.log("unSuccess");
             setTouched({
@@ -47,9 +52,10 @@ const Register = () => {
             })
         }
     }
+    
 
     useEffect(() => {
-        setError(validate(user))
+        setError(RegisterValidate(user))
     },[user, touched])
 
     return (

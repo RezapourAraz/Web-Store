@@ -1,9 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
+// validate function
+import { LoginValidate } from '../utils/validate';
+
+
 const Login = () => {
+
+    const [ user , setUser ] = useState({
+        email: '',
+        password: ''
+    });
+
+    const [ error, setError ] = useState({});
+    const [ touched, setTouched ] = useState({});
+
+    const changeHandler = e => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
+    const focusHandler = e => {
+        setTouched({...touched, [e.target.name]: true})
+    }
+
+    const submitHandler = e => {
+        e.preventDefault();
+
+        if(!Object.keys(error).length) {
+            console.log("yes");
+            // signIn(user.email, user.password)
+            // console.log(currentUser);
+        } else {
+            console.log("unSuccess");
+            setTouched({
+                email: true,
+                password: true
+            })
+        }
+    }
+
+    useEffect(() => {
+        setError(LoginValidate(user))
+    },[user, touched])
+
     return (
         <Section>
             <div className='form-container'>
@@ -11,25 +52,41 @@ const Login = () => {
                     <h2>Web<span>Store</span></h2>
                     <h4>ورود به حساب کاربری</h4>
                 </div>
-                <form>
+                <form onSubmit={submitHandler}>
                     <div className='input'>
-                        <label>ایمیل یا نام کاربری</label>
-                        <input type="email" dir='ltr'/>
-                        <span>ایمیل</span>
+                        <label>ایمیل</label>
+                        <input 
+                        type="email" 
+                        placeholder='example@email.com' 
+                        dir='ltr'
+                        value={user.email} 
+                        name='email'
+                        onChange={changeHandler}
+                        onFocus={focusHandler}
+                        autoComplete="off"
+                        />
+                        {error.email && touched.email && <span>{error.email}</span>}
                     </div>
                     <div className='input'>
                         <label>گذرواژه</label>
-                        <input type="password" dir='ltr'/>
-                        <span>گذرواژه</span>
+                        <input 
+                        type="password" 
+                        dir='ltr'
+                        value={user.password} 
+                        name='password'
+                        onChange={changeHandler}
+                        onFocus={focusHandler}
+                        />
+                        {error.password && touched.password && <span>{error.password}</span>}
+                    </div>
+                    <div className='btn'>
+                        <button type='submit'>ورود</button>
+                    </div>
+                    <div className='links'>
+                        <Link to='/'>فراموشی گذرواژه!</Link>
+                        <Link to='/register'>ساخت حساب جدید!</Link>
                     </div>
                 </form>
-                <div className='btn'>
-                    <button>ورود</button>
-                </div>
-                <div className='links'>
-                    <Link to='/'>فراموشی گذرواژه!</Link>
-                    <Link to='/register'>ساخت حساب جدید!</Link>
-                </div>
             </div>
         </Section>
     );
@@ -66,28 +123,33 @@ const Section = styled.section`
                 color: #B2B1B9;
             }
         }
-        form .input {
+        form {
             display: flex;
             flex-direction: column;
-            padding: .3rem;
-            height: 80px;
-            margin: 1rem 0;
-            label {
-                margin: .5rem;
-                color: #B2B1B9;
+            justify-content: space-between;
+            .input {
+                display: flex;
+                flex-direction: column;
+                padding: .3rem;
+                height: 80px;
+                margin: .5rem 0;
+                label {
+                    margin: .5rem;
+                    color: #B2B1B9;
+                }
+                input {
+                    padding: .5rem 1rem;
+                    border: 1px solid #DAD0C2;
+                    outline: none;
+                    border-radius: .3rem;
+                }
+                span {
+                    color: #E43F5A;
+                    font-size: .7rem;
+                    margin: .3rem .5rem;
+                }
             }
-            input {
-                padding: .5rem 1rem;
-                border: 1px solid #DAD0C2;
-                outline: none;
-                border-radius: .3rem;
-            }
-            span {
-                color: #E43F5A;
-                font-size: .7rem;
-                margin: .3rem .5rem;
-            }
-        }
+        } 
         .btn {
             margin: 1rem .5rem;
             display: flex;

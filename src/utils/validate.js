@@ -1,4 +1,4 @@
-const validate = (user) => {
+export const RegisterValidate = (user) => {
 
     const errors = {};
 
@@ -33,4 +33,21 @@ const validate = (user) => {
     return errors;
 }
 
-export default validate;
+export const LoginValidate = (user) => {
+
+    const errors = {};
+
+    if(!user.email) {
+        errors.email = 'ایمیل خود را وارد کنید!'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) {
+        errors.email = 'ایمیل معتبر وارد کنید!'
+    }
+
+    if(!user.password) {
+        errors.password = 'گذرواژه خود را وارد کنید!'
+    } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(user.password)) {
+        errors.password = 'گذرواژه باید شامل حروف بزرگ و کوچک انگلیسی وعدد و حداقل 8 کاراکتر باشد!'
+    }
+
+    return errors;
+}
