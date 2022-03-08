@@ -38,7 +38,7 @@ const Register = () => {
         e.preventDefault();
 
         if(!Object.keys(error).length) {
-            value.signUp(user.email, user.password, user);
+            value.signUp(user.email, user.password, user.userName);
             // console.log(currentUser);
         } else {
             console.log("unSuccess");

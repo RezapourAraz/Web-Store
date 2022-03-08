@@ -16,6 +16,8 @@ const Login = () => {
     });
     const value = useContext(AuthContext)
 
+    const { errorCode, errorMessage } = value;
+
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
 
@@ -31,9 +33,7 @@ const Login = () => {
         e.preventDefault();
 
         if(!Object.keys(error).length) {
-            console.log("yes");
             value.signIn(user.email, user.password)
-            // console.log(currentUser);
         } else {
             console.log("unSuccess");
             setTouched({
@@ -53,6 +53,7 @@ const Login = () => {
                 <div className='logo'>
                     <h2>Web<span>Store</span></h2>
                     <h4>ورود به حساب کاربری</h4>
+                    {errorCode !== '' && <p>{errorCode}</p>}
                 </div>
                 <form onSubmit={submitHandler}>
                     <div className='input'>
