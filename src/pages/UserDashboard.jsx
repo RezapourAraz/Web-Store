@@ -1,14 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
+
+// Context
 import { AuthContext } from '../contexts/AuthProvider';
 
+// Styles
 import styled from 'styled-components'
 
+// Firebase 
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Routes, Route } from 'react-router-dom';
 
+// Components
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Profile from '../components/Profile';
+import Dashboard from '../components/Dashboard';
+import UserLists from '../components/UserLists';
+import UserOrders from '../components/UserOrders';
 
 
 
@@ -38,8 +46,9 @@ const UserDashboard = () => {
         <Main>
             <Sidebar userData={userData} />
             <Routes>
-                {/* <Route path='orders'  element={<Profile />}/>
-                <Route path='lists'  element={<Profile />}/> */}
+                <Route path='/' element={<Dashboard userData={userData} />} />
+                <Route path='lists'  element={<UserLists />}/>
+                <Route path='orders'  element={<UserOrders />}/>
                 <Route path='profile'  element={<Profile userData={userData} />}/>
             </Routes>
         </Main>
@@ -47,6 +56,7 @@ const UserDashboard = () => {
     );
 };
 
+// Styles
 const Main = styled.main`
     width: auto;
     height: calc(100vh - 110px);

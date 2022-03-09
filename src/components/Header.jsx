@@ -37,7 +37,7 @@ const Header = () => {
                         <Link className='login-btn' to='/login'>
                             ثبت نام و ورود
                         </Link>}
-                        <Link className='btn' onClick={() => setCartPop(true)} to='/'>
+                        <Link className='btn' onClick={() => setCartPop(true)} to=''>
                             <sup>0</sup>
                             <img src={cartIcon} alt="cart icon"  />
                         </Link>

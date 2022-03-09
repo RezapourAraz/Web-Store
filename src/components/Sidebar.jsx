@@ -28,7 +28,7 @@ const Sidebar = ({userData}) => {
                 <ul>
                     <div className='profile'>
                         <img src={avatar} alt="" />
-                        <p>{userData.username}</p>
+                        <Link to='/dashboard'><p>{userData.username}</p></Link>
                     </div>
                     <li>
                         <img src={shoppingBag} alt="" />

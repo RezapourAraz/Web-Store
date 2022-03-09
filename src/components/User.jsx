@@ -9,10 +9,16 @@ const User = () => {
 
     const [ userPop, setUserPop ] = useState(false);
 
+    window.addEventListener('click', event => {
+        if(!event.target.classList.contains('user')) {
+            setUserPop(false);
+        }
+    })
+
     return (
         <>
             <Div onClick={() => setUserPop(!userPop)}>
-                <img src={userIcon} alt="" />
+                <img className='user' src={userIcon} alt="" />
             </Div>
             {userPop && <UserPopup />}
         </>

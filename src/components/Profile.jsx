@@ -31,6 +31,10 @@ const Profile = ({userData}) => {
 
 
     return (
+        <Div>
+            <div className='header-text'>
+                <h3>اطلاعات حساب کاربری</h3>
+            </div>
         <Form onSubmit={submitHandler}>
             <div className='right'>
                 <div>
@@ -40,7 +44,7 @@ const Profile = ({userData}) => {
                     name='firstName'
                     value={user.firstName}
                     onChange={changeHandler}
-                    placeholder={user.firstName ? user.firstName: ''} />
+                    placeholder={userData.firstName ? userData.firstName: ''} />
                 </div>
                 <div>
                     <label>نام خانوادگی</label>
@@ -49,7 +53,7 @@ const Profile = ({userData}) => {
                     name='lastName'
                     value={user.lastName}
                     onChange={changeHandler}
-                    placeholder={user.lastName ? user.lastName : ''} />
+                    placeholder={userData.lastName ? userData.lastName : ''} />
                 </div>
                 <div>
                     <label>نام کاربری</label>
@@ -76,7 +80,7 @@ const Profile = ({userData}) => {
                     name='phoneNumber'
                     onChange={changeHandler}
                     value={user.phoneNumber}
-                    placeholder={user.phoneNumber ? user.phoneNumber : ''} />
+                    placeholder={userData.phoneNumber ? userData.phoneNumber : ''} />
                 </div>
                 <div>
                     <label>عکس پروفایل</label>
@@ -92,8 +96,23 @@ const Profile = ({userData}) => {
                 </div>
             </div>
         </Form>
+        </Div>
     );
 };
+
+const Div = styled.div`
+    .header-text {
+        padding: .5rem;
+        text-align: center;
+        border-bottom: 1px solid #DAD0C2;
+        h3 {
+            color: #316B83;
+            span {
+                color: #D57E7E;
+            }
+        }
+    }
+`;
 
 const Form = styled.form`
     width: auto;
@@ -123,6 +142,10 @@ const Form = styled.form`
             color: #EEEEEE;
             background-color: #316B83;
             cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+            :hover {
+                box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+            }
         }
     }
 `;
