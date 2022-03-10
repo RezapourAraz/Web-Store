@@ -1,20 +1,24 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 
-import { getDatabase, ref, set } from "firebase/database";
+// Firebase
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getDatabase, set, ref } from "firebase/database";
 
+// Notify function
+import { notify } from '../utils/notify';
 
+// create context
 export const AuthContext = createContext();
+
 
 const AuthProvider = ({children}) => {
 
     const [ currentUser, setCurrentUser ] = useState({});
-    const [ errorCode, setErrorCode ] = useState('');
-    const [ errorMessage, setErrorMessage ] = useState('');
     const navigate = useNavigate();
-    
+
+    // Sign Up 
     const signUp = ( email, password, userName ) => {
         createUserWithEmailAndPassword(auth, email, password )
             .then((userCredential) => {
@@ -22,34 +26,38 @@ const AuthProvider = ({children}) => {
                 const user = userCredential.user;
                 const db = getDatabase();
                 set(ref(db, 'users/' + user.uid), {
-                    username: userName,
+                    displayName: userName,
                     email: email,
                     firstName: '',
                     lastName: '',
                     phoneNumber: '',
-                    profile_picture : ''
+                    photoURL: ''
                 });
+                notify("حساب کاربری شما با موفقیت ساخته شد!", "success")
                 navigate('/')
             })
             .catch((error) => {
-                setErrorCode(error.code);
-                setErrorMessage(error.message);
+                const errorCode = error.code;
+                notify(errorCode, "error")
             });
     }
 
+    // Sign In
     const signIn = ( email, password ) => {
         signInWithEmailAndPassword(auth, email, password )
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                notify("درحال انتقال به حساب کاربری!", "success");
                 navigate('/')
             })
             .catch((error) => {
-                setErrorCode(error.code);
-                setErrorMessage(error.message);
+                const errorCode = error.code;
+                notify(errorCode, "error")
             });
     }
 
+    //logged in user
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -57,19 +65,21 @@ const AuthProvider = ({children}) => {
         return unsubscribe;
     },[])
 
+    // Log Out
     const logOut = () => {
         auth.signOut()
         navigate('/')
     }
 
+    // Upload User Data
+    
+
 
     const value = {
         currentUser,
-        errorCode,
-        errorMessage,
         signUp,
         signIn,
-        logOut
+        logOut,
     }
 
 

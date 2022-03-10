@@ -5,7 +5,7 @@ const Dashboard = ({userData}) => {
     return (
         <Div>
             <div className='header-text'>
-                <h3> خوش آمدید <span>{userData.username}</span> عزیز !</h3>
+                <h3> خوش آمدید <span>{userData.displayName}</span> عزیز !</h3>
             </div>
         </Div>
     );

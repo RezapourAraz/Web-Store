@@ -10,7 +10,7 @@ const User = () => {
     const [ userPop, setUserPop ] = useState(false);
 
     window.addEventListener('click', event => {
-        if(!event.target.classList.contains('user')) {
+        if(!event.target.classList.contains('user') && userPop) {
             setUserPop(false);
         }
     })

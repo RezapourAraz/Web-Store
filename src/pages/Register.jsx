@@ -1,7 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+// Styled
 import styled from 'styled-components';
+
+// Context
 import { AuthContext } from '../contexts/AuthProvider';
+
+// Toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 // validate function
 import { RegisterValidate } from '../utils/validate';
@@ -39,9 +49,7 @@ const Register = () => {
 
         if(!Object.keys(error).length) {
             value.signUp(user.email, user.password, user.userName);
-            // console.log(currentUser);
         } else {
-            console.log("unSuccess");
             setTouched({
                 userName: true,
                 email: true,
@@ -138,11 +146,13 @@ const Register = () => {
                         <Link to='/login'>حساب کاربری دارید؟</Link>
                     </div>
                 </form>
+                <ToastContainer />
             </div>
         </Section>
     );
 };
 
+// Styled
 const Section = styled.section`
     width: 100vw;
     height: 100vh;

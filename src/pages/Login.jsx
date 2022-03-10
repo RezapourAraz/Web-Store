@@ -1,11 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { AuthContext } from '../contexts/AuthProvider';
 
+// Toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Styles
+import styled from 'styled-components';
+
+// Context
+import { AuthContext } from '../contexts/AuthProvider';
 
 // validate function
 import { LoginValidate } from '../utils/validate';
+
 
 
 const Login = () => {
@@ -15,8 +23,6 @@ const Login = () => {
         password: ''
     });
     const value = useContext(AuthContext)
-
-    const { errorCode, errorMessage } = value;
 
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
@@ -31,11 +37,9 @@ const Login = () => {
 
     const submitHandler = e => {
         e.preventDefault();
-
         if(!Object.keys(error).length) {
             value.signIn(user.email, user.password)
         } else {
-            console.log("unSuccess");
             setTouched({
                 email: true,
                 password: true
@@ -53,7 +57,6 @@ const Login = () => {
                 <div className='logo'>
                     <h2>Web<span>Store</span></h2>
                     <h4>ورود به حساب کاربری</h4>
-                    {errorCode !== '' && <p>{errorCode}</p>}
                 </div>
                 <form onSubmit={submitHandler}>
                     <div className='input'>
@@ -90,6 +93,7 @@ const Login = () => {
                         <Link to='/register'>ساخت حساب جدید!</Link>
                     </div>
                 </form>
+            <ToastContainer />
             </div>
         </Section>
     );

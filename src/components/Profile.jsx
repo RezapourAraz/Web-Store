@@ -2,20 +2,32 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components'
 import { getDatabase, ref, update } from "firebase/database";
 
+import { upload } from '../firebase';
+
 import { AuthContext } from '../contexts/AuthProvider';
 
+
+
 const Profile = ({userData}) => {
-    const {currentUser} = useContext(AuthContext);
+
+    const { currentUser } = useContext(AuthContext);
+    
+    const [ photo, setPhoto ] = useState(null);
 
     const [ user, setUserData ] = useState({
         firstName: '',
         lastName: '',
         phoneNumber: '',
-        profile_picture: ''
     })
 
     const changeHandler = e => {
-        setUserData({...user, [e.target.name]: e.target.value})
+        if (e.target.name === "profile_picture") {
+            if (e.target.files[0]) {
+                setPhoto(e.target.files[0])
+            }
+        } else {
+            setUserData({...user, [e.target.name]: e.target.value})
+        }
     }
 
     const submitHandler = e => {
@@ -25,8 +37,10 @@ const Profile = ({userData}) => {
             firstName: user.firstName,
             lastName: user.lastName,
             phoneNumber: user.phoneNumber,
-            profile_picture: user.profile_picture
         });
+    }
+    const uploadHandler = () => {
+        upload(photo, currentUser);
     }
 
 
@@ -44,6 +58,7 @@ const Profile = ({userData}) => {
                     name='firstName'
                     value={user.firstName}
                     onChange={changeHandler}
+                    disabled={userData.firstName}
                     placeholder={userData.firstName ? userData.firstName: ''} />
                 </div>
                 <div>
@@ -53,6 +68,7 @@ const Profile = ({userData}) => {
                     name='lastName'
                     value={user.lastName}
                     onChange={changeHandler}
+                    disabled={userData.lastName}
                     placeholder={userData.lastName ? userData.lastName : ''} />
                 </div>
                 <div>
@@ -61,7 +77,7 @@ const Profile = ({userData}) => {
                     disabled 
                     type="text" 
                     name='userName'
-                    value={userData.username ? userData.username : ''} />
+                    value={userData.displayName ? userData.displayName : ''} />
                 </div>
             </div>
             <div className='left'>
@@ -80,16 +96,8 @@ const Profile = ({userData}) => {
                     name='phoneNumber'
                     onChange={changeHandler}
                     value={user.phoneNumber}
+                    disabled={userData.phoneNumber}
                     placeholder={userData.phoneNumber ? userData.phoneNumber : ''} />
-                </div>
-                <div>
-                    <label>عکس پروفایل</label>
-                    <input 
-                    type="file"
-                    name='profile_picture'
-                    onChange={changeHandler}
-                    value={user.profile_picture}
-                    placeholder={user.profile_picture ? user.profile_picture : ''} />
                 </div>
                 <div>
                     <button>ثبت تغییرات</button>

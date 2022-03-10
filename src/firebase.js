@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
 const firebaseConfig = ({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,5 +15,17 @@ const firebaseConfig = ({
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
-const database = getDatabase(app);
+export const database = getDatabase(app);
+export const storage = getStorage(app);
+
+
+
+export const upload = async (file, currentUser) => {
+  const fileRef = ref(storage, currentUser.uid + '.png' )
+  const snapshot = await uploadBytes(fileRef, file)
+
+  const photoURL = await getDownloadURL(fileRef);
+
+  updateProfile(currentUser, {photoURL})
+}
 

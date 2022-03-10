@@ -31,11 +31,11 @@ const UserPopup = () => {
                 </li>
                 <li>
                     <img src={shoppingBag} alt="" />
-                    <Link to='/'>سفارش ها</Link>
+                    <Link to='/dashboard/orders'>سفارش ها</Link>
                 </li>
                 <li>
                     <img src={heart} alt="" />
-                    <Link to='/'>لیست ها</Link>
+                    <Link to='/dashboard/lists'>لیست ها</Link>
                 </li>
                 <li>
                     <img src={exit} alt="" />

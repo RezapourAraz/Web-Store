@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { upload } from '../firebase';
 
 // Context
 import { AuthContext } from '../contexts/AuthProvider';
@@ -18,17 +20,45 @@ import userIcon from '../assets/icons/user.svg';
 const Sidebar = ({userData}) => {
 
     const value = useContext(AuthContext);
+    const { currentUser } = value;
+
+    const [ photo, setPhoto ] = useState(null);
+    const [ photoURL, setPhotoURL ] = useState(avatar);
 
     const signOutHandler = () => {
         value.logOut();
     }
 
+    const uploadHandler = () => {
+        upload(photo, currentUser);
+    }
+
+    const changeHandler = e => {
+        if (e.target.files[0]) {
+            setPhoto(e.target.files[0])
+        }
+    }
+
+    useEffect(() => {
+        if(currentUser?.photoURL) {
+            setPhotoURL(currentUser.photoURL);
+        }
+    },[currentUser])
+
+    
+
     return (
             <Div className='menu'>
                 <ul>
                     <div className='profile'>
-                        <img src={avatar} alt="" />
-                        <Link to='/dashboard'><p>{userData.username}</p></Link>
+                        <img src={photoURL} alt="" />
+                        <input 
+                            type="file"
+                            className="custom-file-input"
+                            onChange={changeHandler}
+                            onClick={uploadHandler}
+                        />
+                        <Link to='/dashboard'><p>{userData.displayName}</p></Link>
                     </div>
                     <li>
                         <img src={shoppingBag} alt="" />
@@ -62,8 +92,42 @@ const Div= styled.div`
             padding: .3rem;
             text-align: center;
             .profile {
+                position: relative;
                 height: 100px;
                 border-bottom: 1px solid #DAD0C2;
+                img {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    object-fit: cover;;
+                }
+                .custom-file-input {
+                    width: 15px;
+                    position: absolute;
+                    top: 45px;
+                    right: 135px;
+                }
+                .custom-file-input::-webkit-file-upload-button {
+                    visibility: hidden;
+                }
+                .custom-file-input::before {
+                    content: '+';
+                    display: inline-block;
+                    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+                    border: 1px solid #999;
+                    border-radius: 3px;
+                    padding: 1px 2px;
+                    outline: none;
+                    white-space: nowrap;
+                    -webkit-user-select: none;
+                    cursor: pointer;
+                    text-shadow: 1px 1px #fff;
+                    font-weight: 700;
+                    font-size: 10pt;
+                }
+                .custom-file-input::after {
+                    content: '';
+                }
             }
             li {
                 display: flex;
