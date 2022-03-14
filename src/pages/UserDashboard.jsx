@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-
-// Context
-import { AuthContext } from '../contexts/AuthProvider';
+import React, { useEffect, useState } from 'react';
 
 // Styles
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 // Firebase 
 import { getDatabase, ref, child, get } from "firebase/database";
@@ -19,26 +16,24 @@ import UserLists from '../components/UserLists';
 import UserOrders from '../components/UserOrders';
 
 
-
 const UserDashboard = () => {
 
-    const value = useContext(AuthContext);
-    const { currentUser } = value;
 
     const [userData , setUserData ] = useState('');
 
     const dbRef = ref(getDatabase());
-    useEffect(() => {
-        get(child(dbRef, `users/${currentUser.uid}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                setUserData(snapshot.val());
-            } else {
-                console.log("No data available");
-            }
-            }).catch((error) => {
-                console.error(error);
-            });
-    },[currentUser.uid, dbRef])
+
+    // useEffect(() => {
+    //     get(child(dbRef, `users/${currentUser.uid}`)).then((snapshot) => {
+    //         if (snapshot.exists()) {
+    //             setUserData(snapshot.val());
+    //         } else {
+    //             console.log("No data available");
+    //         }
+    //         }).catch((error) => {
+    //             console.error(error);
+    //         });
+    // },[currentUser.uid, dbRef])
 
     return (
         <>
@@ -62,12 +57,14 @@ const Main = styled.main`
     height: calc(100vh - 110px);
     margin: .5rem auto;
     padding: .3rem;
-    border-radius: .3rem;
+    border-radius: .4rem;
     display: grid;
     grid-template-columns: 250px auto;
     gap: 1rem;
     div {
         background: #EEEEEE;
+        border-radius: .3rem;
+        overflow: hidden;
     }
 `;
 

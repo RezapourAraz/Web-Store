@@ -1,28 +1,30 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+// Dispatch
+import { useDispatch, useSelector } from 'react-redux';
 // Toastify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 // Styles
 import styled from 'styled-components';
-
-// Context
-import { AuthContext } from '../contexts/AuthProvider';
-
 // validate function
 import { LoginValidate } from '../utils/validate';
+// 
+// Action
+import userLogin from '../redux/actions/userLoginAction';
 
 
 
 const Login = () => {
 
+    const dispatch = useDispatch();
+    const loggedInUser = useSelector(state => state.currentUser);
+    const navigate = useNavigate();
+
     const [ user , setUser ] = useState({
         email: '',
         password: ''
     });
-    const value = useContext(AuthContext)
 
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
@@ -38,7 +40,7 @@ const Login = () => {
     const submitHandler = e => {
         e.preventDefault();
         if(!Object.keys(error).length) {
-            value.signIn(user.email, user.password)
+            dispatch(userLogin(user.email, user.password))
         } else {
             setTouched({
                 email: true,
@@ -49,7 +51,13 @@ const Login = () => {
 
     useEffect(() => {
         setError(LoginValidate(user))
-    },[user, touched])
+        const navigateTo = async () => {
+            if (loggedInUser.user !== '') {
+                // navigate('/')
+            }
+        }
+        navigateTo();
+    },[user, touched, loggedInUser]) 
 
     return (
         <Section>

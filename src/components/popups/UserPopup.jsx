@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { AuthContext } from '../../contexts/AuthProvider';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Icons
 import exit from '../../assets/icons/exit.svg';
@@ -11,22 +10,23 @@ import shoppingBag from '../../assets/icons/shopping-bag.svg';
 import avatar from '../../assets/icons/account-avatar.svg';
 import arrow from '../../assets/icons/left-arrow.svg';
 
+import { logOutUser } from '../../redux/actions/currentUserAction';
+
 
 const UserPopup = () => {
 
-    const value = useContext(AuthContext);
-
-    const { currentUser } = value;
-
+    const dispatch = useDispatch();
+    const currentUser = useSelector(state => state.currentUser)
+    
     const signOutHandler = () => {
-        value.logOut();
+        dispatch(logOutUser())
     }
 
     return (
             <Ul>
                 <li>
                     <img src={avatar} alt="" />
-                    <Link to='/dashboard'>{currentUser.email}</Link>
+                    <Link to='/dashboard'>{currentUser.user.email}</Link>
                     <img src={arrow} alt="" />
                 </li>
                 <li>

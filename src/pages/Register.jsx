@@ -1,23 +1,25 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+// Dispatch
+import { useDispatch, useSelector } from 'react-redux';
 // Styled
 import styled from 'styled-components';
-
-// Context
-import { AuthContext } from '../contexts/AuthProvider';
-
 // Toastify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
 // validate function
 import { RegisterValidate } from '../utils/validate';
+// Action
+import userRegister from '../redux/actions/userRegisterAction';
 
+// notify("درحال انتقال به حساب کاربری!", "success");
+// notify("حساب کاربری شما با موفقیت ساخته شد!", "success")
 
 const Register = () => {
+
+    const dispatch = useDispatch();
+    const { currentUser } = useSelector(state => state.currentUser);
+    console.log(currentUser);
 
     const [ user, setUser ] = useState({
         userName: '',
@@ -27,8 +29,6 @@ const Register = () => {
         checkbox: false
     });
 
-    const value = useContext(AuthContext)
-    
     const [ error, setError ] = useState({});
     const [ touched, setTouched ] = useState({});
 
@@ -48,7 +48,7 @@ const Register = () => {
         e.preventDefault();
 
         if(!Object.keys(error).length) {
-            value.signUp(user.email, user.password, user.userName);
+            dispatch(userRegister(user.email, user.password, user.userName));
         } else {
             setTouched({
                 userName: true,

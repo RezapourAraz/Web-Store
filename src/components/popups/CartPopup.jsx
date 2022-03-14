@@ -32,6 +32,7 @@ const Popup = styled.section`
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
     .container {
         display: flex;
         flex-direction: column;

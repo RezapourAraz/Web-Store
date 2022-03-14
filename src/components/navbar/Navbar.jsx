@@ -20,6 +20,7 @@ const Navbar = ({open}) => {
 
 const Nav = styled.nav`
     padding: .2rem;
+    z-index: 50;
     ul {
         display: flex;
         li {

@@ -4,9 +4,6 @@ import styled from 'styled-components';
 
 import { upload } from '../firebase';
 
-// Context
-import { AuthContext } from '../contexts/AuthProvider';
-
 // Icons
 import exit from '../assets/icons/exit.svg';
 import heart from '../assets/icons/heart.svg';
@@ -19,18 +16,15 @@ import userIcon from '../assets/icons/user.svg';
 
 const Sidebar = ({userData}) => {
 
-    const value = useContext(AuthContext);
-    const { currentUser } = value;
-
     const [ photo, setPhoto ] = useState(null);
     const [ photoURL, setPhotoURL ] = useState(avatar);
 
     const signOutHandler = () => {
-        value.logOut();
+        // logOut();
     }
 
     const uploadHandler = () => {
-        upload(photo, currentUser);
+        // upload(photo, currentUser);
     }
 
     const changeHandler = e => {
@@ -39,11 +33,11 @@ const Sidebar = ({userData}) => {
         }
     }
 
-    useEffect(() => {
-        if(currentUser?.photoURL) {
-            setPhotoURL(currentUser.photoURL);
-        }
-    },[currentUser])
+    // useEffect(() => {
+    //     // if(currentUser?.photoURL) {
+    //     //     setPhotoURL(currentUser.photoURL);
+    //     // }
+    // },[currentUser])
 
     
 

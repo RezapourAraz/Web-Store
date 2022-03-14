@@ -4,13 +4,9 @@ import { getDatabase, ref, update } from "firebase/database";
 
 import { upload } from '../firebase';
 
-import { AuthContext } from '../contexts/AuthProvider';
-
 
 
 const Profile = ({userData}) => {
-
-    const { currentUser } = useContext(AuthContext);
     
     const [ photo, setPhoto ] = useState(null);
 
@@ -32,15 +28,15 @@ const Profile = ({userData}) => {
 
     const submitHandler = e => {
         e.preventDefault();
-        const db = getDatabase();
-        update(ref(db, 'users/' + currentUser.uid), {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            phoneNumber: user.phoneNumber,
-        });
+        // const db = getDatabase();
+        // update(ref(db, 'users/' + currentUser.uid), {
+        //     firstName: user.firstName,
+        //     lastName: user.lastName,
+        //     phoneNumber: user.phoneNumber,
+        // });
     }
     const uploadHandler = () => {
-        upload(photo, currentUser);
+        // upload(photo, currentUser);
     }
 
 

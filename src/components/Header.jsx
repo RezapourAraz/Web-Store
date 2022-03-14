@@ -1,23 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-// Auth Context
-import { AuthContext } from '../contexts/AuthProvider';
-
 // Components
 import Hamburger from './navbar/Hamburger';
 import CartPopup from './popups/CartPopup';
 import User from './User';
-
 // Icons
 import cartIcon from '../assets/icons/shopping-cart1.svg';
+import { useSelector } from 'react-redux';
+
+
 
 
 const Header = () => {
+    const currentUser = useSelector(state => state.currentUser);
 
     const [ cartPop, setCartPop ] = useState(false);
-    const {currentUser} = useContext(AuthContext);
 
     window.addEventListener('click', event => {
         if(event.target.classList.contains('close')) {
@@ -33,7 +31,7 @@ const Header = () => {
                         <h2>Web<span>Store</span></h2>
                     </div>
                     <div className='btns'>
-                        { currentUser ? <User user={currentUser} /> : 
+                        { currentUser.user ? <User user={currentUser} /> : 
                         <Link className='login-btn' to='/login'>
                             ثبت نام و ورود
                         </Link>}

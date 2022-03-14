@@ -24,6 +24,7 @@ const Hamburger = () => {
 const Div = styled.div`
     display: flex;
     align-items: center;
+    z-index: 50;
     div {
         cursor: pointer;
         width: 2.2rem;

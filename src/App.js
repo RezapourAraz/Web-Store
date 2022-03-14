@@ -1,6 +1,10 @@
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import AuthProvider from './contexts/AuthProvider';
+
+import { useDispatch } from 'react-redux';
+
+import { loggedInUser } from './redux/actions/currentUserAction';
 
 // Pages
 import Landing from './pages/Landing';
@@ -10,15 +14,22 @@ import UserDashboard from './pages/UserDashboard';
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loggedInUser())
+  },[])
+
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path='/' element={<Landing />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/dashboard/*' element={<UserDashboard />} />
-      </Routes>
-    </AuthProvider>
+    
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/dashboard/*' element={<UserDashboard />} />
+        </Routes>
+    
   );
 }
 
