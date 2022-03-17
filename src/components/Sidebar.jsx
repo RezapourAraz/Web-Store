@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// Action
+import { logOutUser } from '../redux/actions/currentUserAction';
+import { uploadProfileImage } from '../redux/actions/userProfileAction';
+// Styled
 import styled from 'styled-components';
-
-import { upload } from '../firebase';
-
 // Icons
 import exit from '../assets/icons/exit.svg';
 import heart from '../assets/icons/heart.svg';
@@ -14,17 +16,20 @@ import userIcon from '../assets/icons/user.svg';
 
 
 
-const Sidebar = ({userData}) => {
+const Sidebar = ({userInfo}) => {
+    
 
+    const dispatch = useDispatch();
+    const userData = useSelector(state => state.currentUser.user);
     const [ photo, setPhoto ] = useState(null);
     const [ photoURL, setPhotoURL ] = useState(avatar);
 
     const signOutHandler = () => {
-        // logOut();
+        dispatch(logOutUser())
     }
 
     const uploadHandler = () => {
-        // upload(photo, currentUser);
+        dispatch(uploadProfileImage(photo, userData))
     }
 
     const changeHandler = e => {
@@ -33,11 +38,11 @@ const Sidebar = ({userData}) => {
         }
     }
 
-    // useEffect(() => {
-    //     // if(currentUser?.photoURL) {
-    //     //     setPhotoURL(currentUser.photoURL);
-    //     // }
-    // },[currentUser])
+    useEffect(() => {
+        if(userData?.photoURL) {
+            setPhotoURL(userData.photoURL);
+        }
+    },[userData])
 
     
 
@@ -52,7 +57,7 @@ const Sidebar = ({userData}) => {
                             onChange={changeHandler}
                             onClick={uploadHandler}
                         />
-                        <Link to='/dashboard'><p>{userData.displayName}</p></Link>
+                        <Link to='/dashboard'>{userInfo && <p>{userInfo.username}</p>}</Link>
                     </div>
                     <li>
                         <img src={shoppingBag} alt="" />

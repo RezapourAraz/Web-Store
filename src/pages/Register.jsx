@@ -19,7 +19,6 @@ const Register = () => {
 
     const dispatch = useDispatch();
     const { currentUser } = useSelector(state => state.currentUser);
-    console.log(currentUser);
 
     const [ user, setUser ] = useState({
         userName: '',

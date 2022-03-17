@@ -1,5 +1,6 @@
 const initialState = {
     user: '',
+    userInfo: '',
     error: '',
     loading: false
 }
@@ -51,6 +52,19 @@ export const userRducer = (state = initialState , action) => {
                 user: '',
                 loading: false,
                 error: ''
+            }
+        case "FETCH_USER_DATA":
+            return {
+                ...state,
+                userInfo: action.payload
+            }
+        case "UPDATE_USER_INFO":
+            return {
+                ...state
+            }
+        case "UPDATE_PROFILE_IMAGE":
+            return {
+                ...state
             }
         default:
             return state;

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loggedInUser } from '../redux/actions/currentUserAction';
 
 // Styles
 import styled from 'styled-components';
-
-// Firebase 
-import { getDatabase, ref, child, get } from "firebase/database";
-import { Routes, Route } from 'react-router-dom';
 
 // Components
 import Header from '../components/Header';
@@ -18,33 +17,23 @@ import UserOrders from '../components/UserOrders';
 
 const UserDashboard = () => {
 
+    const dispatch = useDispatch();
+    const userInfo = useSelector(state => state.currentUser.userInfo);
 
-    const [userData , setUserData ] = useState('');
-
-    const dbRef = ref(getDatabase());
-
-    // useEffect(() => {
-    //     get(child(dbRef, `users/${currentUser.uid}`)).then((snapshot) => {
-    //         if (snapshot.exists()) {
-    //             setUserData(snapshot.val());
-    //         } else {
-    //             console.log("No data available");
-    //         }
-    //         }).catch((error) => {
-    //             console.error(error);
-    //         });
-    // },[currentUser.uid, dbRef])
+    useEffect(() => {
+        dispatch(loggedInUser())
+      },[dispatch])
 
     return (
         <>
         <Header />
         <Main>
-            <Sidebar userData={userData} />
+            <Sidebar userInfo={userInfo}/>
             <Routes>
-                <Route path='/' element={<Dashboard userData={userData} />} />
-                <Route path='lists'  element={<UserLists />}/>
+                <Route path='/' element={<Dashboard userInfo={userInfo} />} />
+                <Route path='lists'  element={<UserLists />} />
                 <Route path='orders'  element={<UserOrders />}/>
-                <Route path='profile'  element={<Profile userData={userData} />}/>
+                <Route path='profile'  element={<Profile userInfo={userInfo} />} />
             </Routes>
         </Main>
         </>

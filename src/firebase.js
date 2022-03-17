@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
 
 
@@ -25,12 +25,12 @@ export const db = getFirestore(app)
 
 
 
-export const upload = async (file, currentUser) => {
-  const fileRef = ref(storage, currentUser.uid + '.png' )
-  const snapshot = await uploadBytes(fileRef, file)
+// export const upload = async (file, currentUser) => {
+//   const fileRef = ref(storage, currentUser.uid + '.png' )
+//   const snapshot = await uploadBytes(fileRef, file)
 
-  const photoURL = await getDownloadURL(fileRef);
+//   const photoURL = await getDownloadURL(fileRef);
 
-  updateProfile(currentUser, {photoURL})
-}
+//   updateProfile(currentUser, {photoURL})
+// }
 

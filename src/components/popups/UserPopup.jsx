@@ -16,7 +16,7 @@ import { logOutUser } from '../../redux/actions/currentUserAction';
 const UserPopup = () => {
 
     const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.currentUser)
+    const userInfo = useSelector(state => state.currentUser.userInfo)
     
     const signOutHandler = () => {
         dispatch(logOutUser())
@@ -26,7 +26,7 @@ const UserPopup = () => {
             <Ul>
                 <li>
                     <img src={avatar} alt="" />
-                    <Link to='/dashboard'>{currentUser.user.email}</Link>
+                    <Link to='/dashboard'>{userInfo.username}</Link>
                     <img src={arrow} alt="" />
                 </li>
                 <li>

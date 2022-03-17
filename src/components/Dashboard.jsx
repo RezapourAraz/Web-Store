@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Dashboard = ({userData}) => {
+const Dashboard = ({userInfo}) => {
+
     return (
         <Div>
             <div className='header-text'>
-                <h3> خوش آمدید <span>{userData.displayName}</span> عزیز !</h3>
+                <h3> خوش آمدید {userInfo && <span>{userInfo.username}</span>} عزیز !</h3>
             </div>
         </Div>
     );

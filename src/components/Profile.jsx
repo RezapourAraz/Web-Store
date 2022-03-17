@@ -1,14 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// Styles
 import styled from 'styled-components'
-import { getDatabase, ref, update } from "firebase/database";
-
-import { upload } from '../firebase';
-
+// ACtions
+import { updateUser } from '../redux/actions/updateUserAction';
 
 
-const Profile = ({userData}) => {
-    
-    const [ photo, setPhoto ] = useState(null);
+
+const Profile = ({userInfo}) => {
+
+    const dispatch = useDispatch();
+    const userData = useSelector(state => state.currentUser.user);
 
     const [ user, setUserData ] = useState({
         firstName: '',
@@ -17,26 +19,12 @@ const Profile = ({userData}) => {
     })
 
     const changeHandler = e => {
-        if (e.target.name === "profile_picture") {
-            if (e.target.files[0]) {
-                setPhoto(e.target.files[0])
-            }
-        } else {
-            setUserData({...user, [e.target.name]: e.target.value})
-        }
+        setUserData({...user, [e.target.name]: e.target.value})
     }
 
     const submitHandler = e => {
         e.preventDefault();
-        // const db = getDatabase();
-        // update(ref(db, 'users/' + currentUser.uid), {
-        //     firstName: user.firstName,
-        //     lastName: user.lastName,
-        //     phoneNumber: user.phoneNumber,
-        // });
-    }
-    const uploadHandler = () => {
-        // upload(photo, currentUser);
+        dispatch(updateUser(user, userData))
     }
 
 
@@ -54,8 +42,8 @@ const Profile = ({userData}) => {
                     name='firstName'
                     value={user.firstName}
                     onChange={changeHandler}
-                    disabled={userData.firstName}
-                    placeholder={userData.firstName ? userData.firstName: ''} />
+                    disabled={userInfo && userInfo.firstName}
+                    placeholder={userInfo ? userInfo.firstName : ''} />
                 </div>
                 <div>
                     <label>نام خانوادگی</label>
@@ -64,8 +52,8 @@ const Profile = ({userData}) => {
                     name='lastName'
                     value={user.lastName}
                     onChange={changeHandler}
-                    disabled={userData.lastName}
-                    placeholder={userData.lastName ? userData.lastName : ''} />
+                    disabled={userInfo && userInfo.lastName}
+                    placeholder={userInfo ? userInfo.lastName : ''} />
                 </div>
                 <div>
                     <label>نام کاربری</label>
@@ -73,7 +61,7 @@ const Profile = ({userData}) => {
                     disabled 
                     type="text" 
                     name='userName'
-                    value={userData.displayName ? userData.displayName : ''} />
+                    value={userInfo ? userInfo.username : ''} />
                 </div>
             </div>
             <div className='left'>
@@ -83,7 +71,7 @@ const Profile = ({userData}) => {
                     disabled
                     type="email" 
                     name='email'
-                    placeholder={userData.email ? userData.email : ''} />
+                    placeholder={userInfo ? userInfo.email : ''} />
                 </div>
                 <div>
                     <label>شماره تلفن</label>
@@ -92,8 +80,8 @@ const Profile = ({userData}) => {
                     name='phoneNumber'
                     onChange={changeHandler}
                     value={user.phoneNumber}
-                    disabled={userData.phoneNumber}
-                    placeholder={userData.phoneNumber ? userData.phoneNumber : ''} />
+                    disabled={userInfo && userInfo.phoneNumber}
+                    placeholder={userInfo ? userInfo.phoneNumber : ''} />
                 </div>
                 <div>
                     <button>ثبت تغییرات</button>
