@@ -16,7 +16,7 @@ import { logOutUser } from '../../redux/actions/currentUserAction';
 const UserPopup = () => {
 
     const dispatch = useDispatch();
-    const userInfo = useSelector(state => state.currentUser.userInfo)
+    const { userInfo, user } = useSelector(state => state.currentUser)
     
     const signOutHandler = () => {
         dispatch(logOutUser())
@@ -25,8 +25,8 @@ const UserPopup = () => {
     return (
             <Ul>
                 <li>
-                    <img src={avatar} alt="" />
-                    <Link to='/dashboard'>{userInfo.username}</Link>
+                    <img className='profile-image' src={user.photoURL ? user.photoURL : avatar} alt="" />
+                    <Link to='/dashboard'>{userInfo && userInfo.username}</Link>
                     <img src={arrow} alt="" />
                 </li>
                 <li>
@@ -59,8 +59,14 @@ const Ul = styled.div`
             display: flex;
             padding: .3rem;
             border-radius: .3rem;
+            .profile-image {
+                width: 25px;
+                margin: 0 1rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
             img {
-                width: 20px;
+                width: 25px;
                 margin: 0 1rem;
             }
             a {

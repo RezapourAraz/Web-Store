@@ -98,7 +98,7 @@ const Div= styled.div`
                     width: 60px;
                     height: 60px;
                     border-radius: 50%;
-                    object-fit: cover;;
+                    object-fit: cover;
                 }
                 .custom-file-input {
                     width: 15px;

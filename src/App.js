@@ -5,6 +5,7 @@ import './App.css';
 import { useDispatch } from 'react-redux';
 
 import { loggedInUser } from './redux/actions/currentUserAction';
+import { getProducts } from './redux/actions/getProductAction';
 
 // Pages
 import Landing from './pages/Landing';
@@ -19,6 +20,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loggedInUser())
+    dispatch(getProducts())
   },[dispatch])
 
   return (
