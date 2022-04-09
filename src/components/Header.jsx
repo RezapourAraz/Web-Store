@@ -55,7 +55,7 @@ const TopHeader = styled.header`
     background-color: #F6EABE;
     box-shadow: 0 5px 10px rgba(0,0,0,.3);
     .header-container {
-    width: 1358px;
+    width: 1300px;
     margin: 0 auto;
     padding: 0 .5rem;
     .top-header {
@@ -114,6 +114,16 @@ const TopHeader = styled.header`
     }
 }
 @media (max-width: 980px) {
+    .header-container {
+        width: auto;
+    }
+}
+@media (max-width: 1024px) {
+    .header-container {
+        width: auto;
+    }
+}
+@media (max-width: 1300px) {
     .header-container {
         width: auto;
     }

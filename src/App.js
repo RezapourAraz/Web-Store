@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { loggedInUser } from './redux/actions/currentUserAction';
 import { getProducts } from './redux/actions/getProductAction';
+import { getBanners } from './redux/actions/getBannerAction';
 
 // Pages
 import Landing from './pages/Landing';
@@ -21,6 +22,7 @@ function App() {
   useEffect(() => {
     dispatch(loggedInUser())
     dispatch(getProducts())
+    dispatch(getBanners())
   },[dispatch])
 
   return (

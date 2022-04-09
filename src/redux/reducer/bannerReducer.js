@@ -1,25 +1,25 @@
 const initialState = {
-    products: '',
+    banner: '',
     loading: true,
     error: '',
 }
 
-export const productReducer = (state = initialState, action) => {
+export const bannerReducer = (state = initialState, action) => {
+    
     switch (action.type) {
-        case "FETCH_PRODUCTS_REQUEST":
+        case "FETCH_BANNER_REQUEST":
             return {
                 ...state,
                 loading: true,
                 error: ''
             }
-        case "FETCH_PRODUCTS_SUCCESS":
+        case "FETCH_BANNER_SUCCESS":
             return {
                 ...state,
                 loading: false,
-                products: action.payload,
+                banner: action.payload,
                 error: ''
             }
-        
         default :
             return state;
     }

@@ -11,10 +11,9 @@ const getUpdateProfile = () => {
 
 export const uploadProfileImage = (file, user) => async (dispatch) => {
     dispatch(getUpdateProfile())
-    const fileRef = ref(storage, user.uid + '.png' )
+    const fileRef = ref(storage, `users/${user.uid}.png` )
     const snapshot = await uploadBytes(fileRef, file)
     const photoURL = await getDownloadURL(fileRef);
 
     updateProfile(user, {photoURL})
-  }
-  
+}

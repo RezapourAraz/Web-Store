@@ -14,6 +14,7 @@ const fetchProductsSuccess = (products) => {
     }
 }
 
+
 // const fetchProductsError = () => {
 //     return {
 //         type: "FETCH_PRODUCTS_ERROR",
@@ -26,3 +27,4 @@ export const getProducts = () => async (dispatch) => {
     const data = await getDocs(productCollectionRef);
     dispatch(fetchProductsSuccess(data.docs.map((doc) => ({...doc.data()}))))
 }
+
