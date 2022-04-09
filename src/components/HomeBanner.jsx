@@ -52,7 +52,6 @@ const Div = styled.div`
         height: 100%;
         width: 100%;
         .banner-image {
-            object-fit: cover;
             width: 100%;
             height: 100%;
         }

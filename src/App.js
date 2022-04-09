@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loggedInUser } from './redux/actions/currentUserAction';
 import { getProducts } from './redux/actions/getProductAction';
 import { getBanners } from './redux/actions/getBannerAction';
+import { getCategoryBanners } from './redux/actions/categoryBannerAction';
 
 // Pages
 import Landing from './pages/Landing';
@@ -23,6 +24,7 @@ function App() {
     dispatch(loggedInUser())
     dispatch(getProducts())
     dispatch(getBanners())
+    dispatch(getCategoryBanners())
   },[dispatch])
 
   return (
