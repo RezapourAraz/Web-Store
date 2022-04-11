@@ -36,12 +36,13 @@ const Nav = styled.nav`
         }
     }
     @media (max-width: 980px) {
-        position: absolute;
-        top: 87px;
+        position: fixed;
+        top: 0;
         right: 0;
         background: #F6EABE;
         width: 300px;
-        height: calc(100vh - 87px);
+        height: 100vh;
+        margin-top: 87px;
         transition: all .3s linear;
         transform: ${({open}) => open ? "translateX(0)" : "translateX(100%)"};
         ul {

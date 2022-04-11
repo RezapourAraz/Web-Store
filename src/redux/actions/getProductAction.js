@@ -1,5 +1,6 @@
 import { db } from '../../firebase';
 import { collection, getDocs } from "@firebase/firestore";
+import { getCaegoryList } from './getCategoryAction';
 
 const fetchProductsRequest = () => {
     return {
@@ -26,5 +27,6 @@ export const getProducts = () => async (dispatch) => {
     const productCollectionRef = collection(db, "products");
     const data = await getDocs(productCollectionRef);
     dispatch(fetchProductsSuccess(data.docs.map((doc) => ({...doc.data()}))))
+    dispatch(getCaegoryList(data.docs.map((doc) => ({...doc.data()}))))
 }
 

@@ -4,6 +4,7 @@ import { userRducer } from "./reducer/userReducer";
 import { productReducer } from "./reducer/productReducer";
 import { bannerReducer } from "./reducer/bannerReducer";
 import { categoryBannerReducer } from "./reducer/categoryBannerReducer";
+import { categoryListReducer } from "./reducer/categoryListReducer";
 
 
 export const rootReducer = combineReducers({
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
     products: productReducer,
     banners: bannerReducer,
     categoryBanner: categoryBannerReducer,
+    category: categoryListReducer,
 })

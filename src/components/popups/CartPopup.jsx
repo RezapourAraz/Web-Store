@@ -29,7 +29,7 @@ const Popup = styled.section`
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,.2);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
