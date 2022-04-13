@@ -50,8 +50,9 @@ const Main = styled.main`
     display: grid;
     grid-template-columns: 250px auto;
     gap: 1rem;
+
     div {
-        background: #EEEEEE;
+        // background: #EEEEEE;
         border-radius: .3rem;
         overflow: hidden;
     }

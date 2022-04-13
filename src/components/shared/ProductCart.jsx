@@ -21,9 +21,9 @@ const ProductCart = ({title, products}) => {
                 spaceBetween={0}
                 scrollbar
             >
-            {products.map(item =>   <SwiperSlide className='product-swiper'>
+            {products.map((item, index) =>  <SwiperSlide key={index} className='product-swiper'>
                                         <Cart key={item.name} product={item} title={title} />
-                                    </SwiperSlide>)}
+                                            </SwiperSlide>)}
             </Swiper>
         </Section>
     );

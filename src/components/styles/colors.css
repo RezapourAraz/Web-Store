@@ -1,0 +1,143 @@
+.black {
+    background-color: #232931;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+.gray {
+    background-color: gray;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+.red {
+    background-color: #EF4F4F;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+.green {
+    background-color: #6BCB77;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+.blue {
+    background-color: #30AADD ;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border-color: #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+
+.white{
+    background: #FFF9F9;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+.gold {
+    background-color: #FFD700;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+    
+}
+.silver {
+    background-color: silver;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+    
+}
+.orange {
+    background-color: orange;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #232931;
+    margin: 0 .2rem;
+    cursor: pointer;
+    
+}
+
+.black input[type='radio'] {
+    display: none;
+}
+.green input[type='radio'] {
+    display: none;
+}
+.red input[type='radio'] {
+    display: none;
+}
+.blue input[type='radio'] {
+    display: none;
+}
+.white input[type='radio'] {
+    display: none;
+}
+.gray input[type='radio'] {
+    display: none;
+    
+}
+.gold input[type='radio'] {
+    display: none;
+}
+.silver input[type='radio'] {
+    display: none;
+}
+.orange input[type='radio'] {
+    display: none;
+}
+
+
+.black input[type='radio']:checked {
+    opacity: 1;
+}
+.green input[type='radio']:checked {
+    opacity: 1;
+}
+.red input[type='radio']:checked {
+    opacity: 1;
+}
+.blue input[type='radio']:checked {
+    opacity: 1;
+}
+.white input[type='radio']:checked {
+    opacity: 1;
+}
+.gray input[type='radio']:checked {
+    opacity: 1;
+}
+.gold input[type='radio']:checked {
+    opacity: 1;
+}
+.silver input[type='radio']:checked {
+    opacity: 1;
+}
+.orange input[type='radio']:checked {
+    opacity: 1;
+}

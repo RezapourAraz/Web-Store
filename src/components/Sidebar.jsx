@@ -85,8 +85,9 @@ const Div= styled.div`
     border-radius: .3rem;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 5px 7px rgba(0,0,0,.2);
         ul {
-            background: #EEEEEE;
+            // background: #EEEEEE;
             height: calc(100vh - 130px);
             padding: .3rem;
             text-align: center;

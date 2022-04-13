@@ -28,7 +28,7 @@ const Header = () => {
             <div className='header-container'>
                 <div className='top-header'>
                     <div className='logo'>
-                        <h2>Web<span>Store</span></h2>
+                        <Link to='/'><h2>Web<span>Store</span></h2></Link>
                     </div>
                     <div className='btns'>
                         { currentUser.user ? <User user={currentUser} /> : 

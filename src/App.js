@@ -14,6 +14,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
+import ProductDetail from './pages/ProductDetail';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard/*' element={<UserDashboard />} />
+          <Route path='/product-detail/:id' element={<ProductDetail />} />
         </Routes>
     
   );
