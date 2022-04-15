@@ -52,8 +52,9 @@ const Header = () => {
 
 // Styles
 const TopHeader = styled.header`
-    background-color: #F6EABE;
-    box-shadow: 0 5px 10px rgba(0,0,0,.3);
+    // background-color: #;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    // border-botton: 1px solid #EEEEEE;
     .header-container {
     width: 1300px;
     margin: 0 auto;

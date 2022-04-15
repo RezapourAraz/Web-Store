@@ -13,10 +13,10 @@ const getProductsCategory = (category) => {
         watch: []
     };
     await products.map(item => {
-        if(item.category === "mobile") {
+        if(item.category === "گوشی موبایل") {
             category.mobile = [...category.mobile, item]
 
-        } else if (item.category === "watch") {
+        } else if (item.category === "ساعت هوشمند") {
             category.watch = [...category.watch, item]
         }
     return category

@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import exit from '../assets/icons/exit.svg';
 import heart from '../assets/icons/heart.svg';
 import shoppingBag from '../assets/icons/shopping-bag.svg';
+import home from '../assets/icons/home.svg';
 import avatar from '../assets/icons/account-avatar.svg';
 import userIcon from '../assets/icons/user.svg';
 
@@ -44,6 +45,11 @@ const Sidebar = ({userInfo}) => {
         }
     },[userData])
 
+
+    const activeHandler = (e) => {
+        
+    }
+
     
 
     return (
@@ -59,15 +65,19 @@ const Sidebar = ({userInfo}) => {
                         />
                         <Link to='/dashboard'>{userInfo && <p>{userInfo.username}</p>}</Link>
                     </div>
-                    <li>
+                    <li onClick={activeHandler} >
+                        <img src={home} alt="" />
+                        <Link to='/dashboard'>خلاصه فعالیت ها</Link>
+                    </li>
+                    <li onClick={activeHandler}>
                         <img src={shoppingBag} alt="" />
                         <Link to='orders'>سفارش ها</Link>
                     </li>
-                    <li>
+                    <li onClick={activeHandler}>
                         <img src={heart} alt="" />
                         <Link to='lists'>لیست ها</Link>
                     </li>
-                    <li>
+                    <li onClick={activeHandler}>
                         <img src={userIcon} alt="" />
                         <Link to='profile'>اطلاعات حساب کاربری</Link>
                     </li>
@@ -86,15 +96,19 @@ const Div= styled.div`
     display: flex;
     flex-direction: column;
     box-shadow: 0 5px 7px rgba(0,0,0,.2);
+    border: 1px solid #EEEEEE;
         ul {
             // background: #EEEEEE;
             height: calc(100vh - 130px);
             padding: .3rem;
             text-align: center;
+            .active {
+                border-right: 2px solid #D57E7E;
+            }
             .profile {
                 position: relative;
                 height: 100px;
-                border-bottom: 1px solid #DAD0C2;
+                border-bottom: 1px solid #EEEEEE;
                 img {
                     width: 60px;
                     height: 60px;
@@ -141,14 +155,15 @@ const Div= styled.div`
                     margin: .2rem 0;
                 }
                 :hover {
-                    background-color: #DAD0C2;
+                    background-color: #EEEEEE;
                 }
                 p {
                     cursor: pointer;
                     color: #316B83;
                     margin: .2rem 0;
                 }
-    }
+                
+            }
     .main-menu {
         // width: 100%;
         // height: 100%;

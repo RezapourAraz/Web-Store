@@ -40,7 +40,7 @@ const Div = styled.div`
     margin: 1rem .6rem;
     box-shadow: 0px 5px 10px rgba(0,0,0,.1);
     border-radius: .3rem;
-    background-color: #F6EABE;
+    border: 1px solid #EEEEEE;
     transition: all .3s ease-in-out;
     cursor: pointer;
     overflow: hidden;

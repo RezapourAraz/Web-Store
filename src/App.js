@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
 import ProductDetail from './pages/ProductDetail';
+import Category from './pages/Category';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard/*' element={<UserDashboard />} />
           <Route path='/product-detail/:id' element={<ProductDetail />} />
+          <Route path='/category/:id' element={<Category />}/>
         </Routes>
     
   );

@@ -31,7 +31,7 @@ const UserPopup = () => {
                 </li>
                 <li>
                     <img src={shoppingBag} alt="" />
-                    <Link to='/dashboard/orders'>سفارش ها</Link>
+                    <Link to='/dashboard/orders'>سفارش ها</Link> 
                 </li>
                 <li>
                     <img src={heart} alt="" />
@@ -48,13 +48,14 @@ const UserPopup = () => {
 // Styles
 const Ul = styled.div`
         position: absolute;
-        background-color: #EEEEEE;
+        background-color: white;
         padding: .3rem;
-        left: 60px;
+        left: 58px;
         top: 40px;
-        width: fit-content;
-        border: 1px solid #DAD0C2;
+        width: 250px;
+        border: 1px solid #EEEEEE;
         border-radius: .3rem;
+        box-shadow: 0 5px 7px rgba(0,0,0,.2);
         li {
             display: flex;
             padding: .3rem;
@@ -73,7 +74,7 @@ const Ul = styled.div`
                 margin: .2rem 0;
             }
             :hover {
-                background-color: #DAD0C2;
+                background-color: #EEEEEE;
             }
             p {
                 cursor: pointer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import DropDown from '../DropDown';
 
 
 const Navbar = ({open}) => {
@@ -10,7 +11,9 @@ const Navbar = ({open}) => {
         <Nav open={open}>
             <ul>
                 <li><Link to='/'>صفحه نخست</Link></li>
-                <li><Link to='/'>دسته بندی</Link></li>
+                <ul className='dropDown'>
+                    <DropDown />
+                </ul>
                 <li><Link to='/'>درباره ما</Link></li>
                 <li><Link to='/'>تماس با ما</Link></li>
             </ul>
@@ -39,7 +42,7 @@ const Nav = styled.nav`
         position: fixed;
         top: 0;
         right: 0;
-        background: #F6EABE;
+        background: #fcfcfc;
         width: 300px;
         height: 100vh;
         margin-top: 87px;

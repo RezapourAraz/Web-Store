@@ -42,9 +42,9 @@ const UserDashboard = () => {
 
 // Styles
 const Main = styled.main`
-    width: auto;
-    height: calc(100vh - 110px);
-    margin: .5rem auto;
+    width: 93%;
+    height: calc(100vh - 130px);
+    margin: 1rem auto;
     padding: .3rem;
     border-radius: .4rem;
     display: grid;
